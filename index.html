@@ -49,7 +49,6 @@
             border-radius: var(--border-radius);
             padding: 24px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Soft, subtle shadow */
-            /* Added scale transform for zoom effect (TWEAK 3) */
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             display: flex;
             flex-direction: column;
@@ -58,7 +57,6 @@
         }
 
         .card:hover {
-            /* TWEAK 3: Subtle zoom effect */
             transform: translateY(-2px) scale(1.01); 
             box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
         }
@@ -69,12 +67,29 @@
         .card-profile {
             grid-column: span 2;
             grid-row: span 2;
+            /* >>>>>> KEMASKINI PART 10: LATAR BELAKANG IMEJ (bg.jpg) <<<<<< */
+            background-image: url('bg.jpg'); /* Pastikan anda namakan fail anda bg.jpg */
+            background-size: cover;
+            background-position: center;
+            /* Menukarkan warna teks utama kepada putih */
+            color: white !important; 
         }
+        
+        /* Pastikan teks di dalam kad profile kelihatan (Putih) */
+        .card-profile h1, .card-profile h2, .card-profile p, .card-profile a {
+            color: white !important;
+        }
+        .card-profile .profile-header p {
+            color: #a8c8ff !important; /* Biru muda untuk kontras */
+        }
+        .card-profile .social-links a:hover {
+            border-bottom: 2px solid #a8c8ff;
+        }
+        /* >>>>>>>>>>>>>>>>>>> AKHIR KEMASKINI PART 10 <<<<<<<<<<<<<<< */
 
         /* Card 6 (Playlist): Wide Box at the Bottom (3x1) */
         .card-playlist {
             grid-column: 1 / -1; /* Spans all 3 columns */
-            /* Remove standard card padding for full-width iframe border */
             padding: 0; 
             overflow: hidden;
         }
@@ -85,7 +100,6 @@
         }
         
         .card-playlist iframe {
-             /* Ensures iframe sits nicely within card */
              display: block;
         }
 
@@ -97,6 +111,7 @@
             color: var(--color-accent);
         }
 
+        /* ... Content Styling yang lain dikekalkan ... */
         .card h3 {
             font-size: 1.25rem;
             margin-bottom: 5px;
@@ -171,16 +186,14 @@
         /* --- Responsiveness (Mobile Layout) --- */
         @media (max-width: 768px) {
             .bento-grid {
-                /* On mobile, it becomes a single vertical column */
                 grid-template-columns: 1fr;
                 gap: 12px;
             }
 
-            /* All custom grid spans are reset, making every card 1 column wide */
             .card-profile,
             .card-playlist {
                 grid-column: 1 / -1;
-                grid-row: auto; /* Allow auto-flow */
+                grid-row: auto; 
             }
 
             .card {
@@ -190,7 +203,6 @@
             .profile-header h1 {
                 font-size: 2rem;
             }
-            /* Re-add padding to playlist card on mobile since iframe takes full width */
             .card-playlist {
                  padding: 0;
             }
@@ -217,8 +229,8 @@
                 **Tagline:** 'Innovating food safety for agriculture industry.'</p>
                 <div class="social-links" style="margin-top: 20px;">
                     <a href="#" target="_blank">LinkedIn</a>
-                    <a href="https://amirulhaiqalwazir-tech.github.io/amirulhaiqalwazir.git.io/">GitHub</a>
-                    <a href="#" target="_blank">umt portal</a>
+                    <a href="https://github.com/amirulhaiqalwazir-tech" target="_blank">GitHub</a>
+                    <a href="https://amirulhaiqalwazir-tech.github.io/amirulhaiqalwazir.git.io/" target="_blank">Live Website (Submission)</a>
                 </div>
             </div>
         </div>
@@ -228,7 +240,7 @@
                 <h3>Location & Time</h3>
                 <p>UMT, Kuala Nerus</p>
             </div>
-            <p style="text-align: right; font-size: 1.5rem; color: var(--color-accent);">11:42 AM</p>
+            <p style="text-align: right; font-size: 1.5rem; color: var(--color-accent);">11:55 AM</p>
         </div>
         
         <div class="card card-stack">
@@ -263,7 +275,9 @@
         </div>
 
 
-        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/6dOtVTDdiauQNBQEDOtlAB?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="card card-playlist">
+            <h2 style="padding-bottom: 5px;">Deep Focus Study Playlist</h2>
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/6dOtVTDdiauQNBQEDOtlAB?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
 
     </div>
