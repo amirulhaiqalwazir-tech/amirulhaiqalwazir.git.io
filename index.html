@@ -38,8 +38,8 @@
             margin: 0 auto;
             gap: var(--grid-gap);
 
-            /* Defines the grid structure for desktop */
-            grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+            /* Defines the grid structure for desktop (3 equal columns) */
+            grid-template-columns: repeat(3, 1fr); 
             grid-template-rows: auto;
         }
 
@@ -49,6 +49,7 @@
             border-radius: var(--border-radius);
             padding: 24px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Soft, subtle shadow */
+            /* Added scale transform for zoom effect (TWEAK 3) */
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             display: flex;
             flex-direction: column;
@@ -57,7 +58,8 @@
         }
 
         .card:hover {
-            transform: translateY(-2px);
+            /* TWEAK 3: Subtle zoom effect */
+            transform: translateY(-2px) scale(1.01); 
             box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
         }
 
@@ -72,9 +74,20 @@
         /* Card 6 (Playlist): Wide Box at the Bottom (3x1) */
         .card-playlist {
             grid-column: 1 / -1; /* Spans all 3 columns */
+            /* Remove standard card padding for full-width iframe border */
+            padding: 0; 
+            overflow: hidden;
         }
-
-        /* Card 2, 3, 4, 5 will automatically flow into the remaining spots */
+        
+        /* Apply padding back to the card title */
+        .card-playlist h2 {
+            padding: 24px 24px 0 24px;
+        }
+        
+        .card-playlist iframe {
+             /* Ensures iframe sits nicely within card */
+             display: block;
+        }
 
         /* --- Content Styling --- */
 
@@ -128,8 +141,8 @@
             color: var(--color-accent);
         }
 
-        /* Small Card Styling (Location, Hobby) */
-        .card-location h3, .card-hobby h3 {
+        /* Small Card Styling (Location, Hobby, Reflection) */
+        .card-location h3, .card-hobby h3, .card-reflection h3 {
             font-size: 1.1rem;
             color: var(--color-text-secondary);
             font-weight: 400;
@@ -155,42 +168,6 @@
             font-size: 0.9rem;
         }
 
-        /* Playlist Card Styling */
-        .card-playlist .placeholder-bar {
-            background-color: var(--color-text-secondary);
-            height: 6px;
-            border-radius: 3px;
-            width: 100%;
-            margin-top: 20px;
-            position: relative;
-        }
-        .card-playlist .placeholder-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 6px;
-            width: 40%; /* Placeholder progress */
-            background-color: var(--color-accent);
-            border-radius: 3px;
-        }
-        .card-playlist .controls {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            font-size: 1.2rem;
-            color: var(--color-accent);
-            margin-top: 15px;
-        }
-        .card-playlist .controls span {
-            cursor: pointer;
-            transition: color 0.1s;
-        }
-        .card-playlist .controls span:hover {
-            color: var(--color-text-primary);
-        }
-
-
         /* --- Responsiveness (Mobile Layout) --- */
         @media (max-width: 768px) {
             .bento-grid {
@@ -213,6 +190,13 @@
             .profile-header h1 {
                 font-size: 2rem;
             }
+            /* Re-add padding to playlist card on mobile since iframe takes full width */
+            .card-playlist {
+                 padding: 0;
+            }
+            .card-playlist h2 {
+                padding: 20px 20px 0 20px;
+            }
         }
 
     </style>
@@ -232,9 +216,9 @@
                 <p>A focused student exploring **agriculture and food technology**.
                 **Tagline:** 'Innovating food safety for agriculture industry.'</p>
                 <div class="social-links" style="margin-top: 20px;">
-                    <a href="#linkedin">LinkedIn</a>
-                    <a href="#github">GitHub</a>
-                    <a href="#portal">UMT Portal</a>
+                    <a href="#" target="_blank">LinkedIn</a>
+                    <a href="https://amirulhaiqalwazir-tech.github.io/amirulhaiqalwazir.git.io/">GitHub</a>
+                    <a href="#" target="_blank">umt portal</a>
                 </div>
             </div>
         </div>
@@ -244,7 +228,7 @@
                 <h3>Location & Time</h3>
                 <p>UMT, Kuala Nerus</p>
             </div>
-            <p style="text-align: right; font-size: 1.5rem; color: var(--color-accent);">10:50 AM</p>
+            <p style="text-align: right; font-size: 1.5rem; color: var(--color-accent);">11:42 AM</p>
         </div>
         
         <div class="card card-stack">
@@ -265,7 +249,6 @@
             <div class="accent-box" style="padding: 15px;">
                 **Description:** Analyzing the use of the Enhanced Venturi system to optimize nutrient delivery (fertigation) efficiency within a controlled greenhouse environment.
             </div>
-            
         </div>
 
         <div class="card card-hobby">
@@ -273,14 +256,14 @@
             <p>Staying active and enjoying the coastal environment of UMT.</p>
             <p style="margin-top: 15px; font-weight: 600; color: var(--color-accent);">Jogging at Pantai UMT</p>
         </div>
+        
+        <div class="card card-reflection">
+            <h2>Why Food Tech Matters in Malaysia</h2>
+            <p>Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
+        </div>
 
-        <div class="card card-playlist">
-            <h2>Current Study Soundtrack</h2>
-            <p style="font-weight: 600;">Currently Playing: 'Deep Focus Mix'</p>
-            <p style="color: var(--color-text-secondary); margin-top: 5px;">Track: 'Zen Garden' by Study Vibes</p>
-            <div class="placeholder-bar"></div>
-            <div class="controls">
-                <span>&#x23EE;</span> <span style="font-weight: 900;">&#x23F8;</span> <span>&#x23ED;</span> </div>
+
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/6dOtVTDdiauQNBQEDOtlAB?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
 
     </div>
