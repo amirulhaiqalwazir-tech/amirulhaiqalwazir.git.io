@@ -67,34 +67,29 @@
         .card-profile {
             grid-column: span 2;
             grid-row: span 2;
-            /* >>>>>> KEMASKINI PART 10: LATAR BELAKANG IMEJ (bg.jpg) <<<<<< */
-            background-image: url('bg.jpg'); /* Pastikan anda namakan fail anda bg.jpg */
+            background-image: url('bg.jpg'); 
             background-size: cover;
             background-position: center;
-            /* Menukarkan warna teks utama kepada putih */
             color: white !important; 
         }
         
-        /* Pastikan teks di dalam kad profile kelihatan (Putih) */
         .card-profile h1, .card-profile h2, .card-profile p, .card-profile a {
             color: white !important;
         }
         .card-profile .profile-header p {
-            color: #a8c8ff !important; /* Biru muda untuk kontras */
+            color: #a8c8ff !important; 
         }
         .card-profile .social-links a:hover {
             border-bottom: 2px solid #a8c8ff;
         }
-        /* >>>>>>>>>>>>>>>>>>> AKHIR KEMASKINI PART 10 <<<<<<<<<<<<<<< */
 
         /* Card 6 (Playlist): Wide Box at the Bottom (3x1) */
         .card-playlist {
-            grid-column: 1 / -1; /* Spans all 3 columns */
+            grid-column: 1 / -1; 
             padding: 0; 
             overflow: hidden;
         }
         
-        /* Apply padding back to the card title */
         .card-playlist h2 {
             padding: 24px 24px 0 24px;
         }
@@ -111,7 +106,6 @@
             color: var(--color-accent);
         }
 
-        /* ... Content Styling yang lain dikekalkan ... */
         .card h3 {
             font-size: 1.25rem;
             margin-bottom: 5px;
@@ -124,7 +118,6 @@
             line-height: 1.5;
         }
         
-        /* Specific Profile Card Styling */
         .profile-header h1 {
             font-size: 2.5rem;
             font-weight: 900;
@@ -156,7 +149,6 @@
             color: var(--color-accent);
         }
 
-        /* Small Card Styling (Location, Hobby, Reflection) */
         .card-location h3, .card-hobby h3, .card-reflection h3 {
             font-size: 1.1rem;
             color: var(--color-text-secondary);
@@ -172,7 +164,6 @@
             line-height: 1;
         }
 
-        /* Accent Box for Case Study/Tech Stack */
         .accent-box {
             background-color: var(--color-accent);
             color: var(--color-card-bg);
@@ -181,6 +172,44 @@
             margin-top: 10px;
             font-weight: 600;
             font-size: 0.9rem;
+        }
+
+        /* --- NEW: Case Study Column Layout & Button --- */
+        .case-study-container {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .case-study-content {
+            flex: 2;
+        }
+
+        .case-study-action {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-app {
+            background-color: var(--color-accent);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        .btn-app:hover {
+            background-color: #00335c;
+            transform: scale(1.05);
+            color: white;
         }
 
         /* --- Responsiveness (Mobile Layout) --- */
@@ -203,11 +232,19 @@
             .profile-header h1 {
                 font-size: 2rem;
             }
-            .card-playlist {
-                 padding: 0;
+
+            .case-study-container {
+                flex-direction: column;
+                align-items: flex-start;
             }
-            .card-playlist h2 {
-                padding: 20px 20px 0 20px;
+
+            .case-study-action {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .btn-app {
+                width: 100%;
             }
         }
 
@@ -257,9 +294,16 @@
 
         <div class="card card-case-study">
             <h2>Recent Project: Smart Farming</h2>
-            <p>Title: **'Enhance Venturi System for Fertigation'**</p>
-            <div class="accent-box" style="padding: 15px;">
-                **Description:** Analyzing the use of the Enhanced Venturi system to optimize nutrient delivery (fertigation) efficiency within a controlled greenhouse environment.
+            <div class="case-study-container">
+                <div class="case-study-content">
+                    <p>Title: **'Enhance Venturi System for Fertigation'**</p>
+                    <div class="accent-box">
+                        Analyzing the use of the Enhanced Venturi system to optimize nutrient delivery within a controlled greenhouse.
+                    </div>
+                </div>
+                <div class="case-study-action">
+                    <a href="https://amirulhaiqalwazir-tech.github.io/-focus-timer-app/app.html" target="_blank" class="btn-app">Try My Focus Timer App</a>
+                </div>
             </div>
         </div>
 
@@ -273,7 +317,6 @@
             <h2>Why Food Tech Matters in Malaysia</h2>
             <p>Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
         </div>
-
 
         <div class="card card-playlist">
             <h2 style="padding-bottom: 5px;">Deep Focus Study Playlist</h2>
